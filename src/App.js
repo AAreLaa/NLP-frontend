@@ -1,15 +1,29 @@
 import './App.css';
+import React from "react";
 import Navbar from './components/Navbar';
-import Form from './components/Form';
+import Home from './components/Home';
+import ToNepali from './components/ToNepali';
+import WordProbability from './components/WordProbability';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   document.body.style.backgroundColor = '#443c52'
   return (
    <>
-   <Navbar title = "NLP-Web" title1 = "Home" title2 = "About" />
+   <Router>
+   <Navbar title = "NLP-Web" title1 = "Home" title2 = "Translate To Nepali" title3="Probable Words"/>
    <div className="container my-3">
-   <Form head = 'Enter the text to analyze'/>
+   <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/ToNepali" element={<ToNepali head = 'Enter the text to translate it to Nepali'/>}/>
+          <Route path="/ProbableWords" element={<WordProbability head = 'Enter the text to analyze'/>}/>
+        </Routes>   
    </div>
+   </Router>
    </>
   );
 }
