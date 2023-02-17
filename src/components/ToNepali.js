@@ -20,11 +20,11 @@ export default function Form(props) {
    
     <div>
         <div className="mb-3" style={{color:'white'}}>
-            <h1><label htmlFor="exampleFormControlTextarea1" className="form-label">{props.head}</label></h1>
-            <textarea className="form-control" id="exampleFormControlTextarea1" value={text} onChange={changedvalue}  style={{backgroundColor:'#443c52',color:'white'}} rows="10"></textarea>
+            <h1><label htmlFor="exampleFormControlTextarea1" className="font form-label">{props.head}</label></h1>
+            <textarea className="form-control opacity-50" id="exampleFormControlTextarea1" value={text} onChange={changedvalue}  style={{backgroundColor:'#443c52',color:'white'}} rows="8"></textarea>
             <button type="button" className="btn btn-light my-3" onClick={translate}>Translate to Nepali</button>
-           <h1>In Nepali Preview:</h1> 
-           <p>{display}</p>
+           <h1 className='font'>In Nepali Preview:</h1> 
+           <p className='font'style={{ fontSize: '20px' }}>{display}</p>
         </div>
     </div>
     

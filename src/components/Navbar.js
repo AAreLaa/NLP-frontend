@@ -21,6 +21,12 @@ export default function Navbar(props) {
             <li className="nav-item">
             <Link className="nav-link" to="/ProbableWords" >{props.title3}</Link>
             </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/KnowTheSentiment" >{props.title4}</Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/WordEmbeddings" >{props.title5}</Link>
+            </li>
             {/* <li className="nav-item dropdown">  
             <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Dropdown
