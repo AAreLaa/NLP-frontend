@@ -1,22 +1,34 @@
 import React,{useState} from 'react'
-
 export default function WordProbability(props) {
 
     const [fetcheddata,setfetcheddata] = useState({"Predicted Tokens":[['',0]]});
     const [control,setControl]=useState(null);
- 
-    const [visi,setvisi] = useState(1);
+    const [visi,setvisi] = useState(0);
     const [text,settext] = useState("");
     const [display,setdisplay] = useState("Enter something to show you some probable words...");
     const changedvalue =(event)=>{
         settext(event.target.value);
     }
+
+    const handleKey=(e)=>
+    {
+        if(e.key===" " || e.key==="Enter"){
+            const lang='ne';
+            const url = `https://www.google.com/inputtools/request?ime=transliteration_en_${lang}&num=5&cp=0&cs=0&ie=utf-8&oe=utf-8&app=jsapi&text=${text}`;
+            fetch(url)
+            .then(res=>res.json()
+            .then(data=>{
+                settext(data[1][0][1][0]+" ");
+            }))
+            .catch(err=>console.log(err)); 
+    }
+    }
+
     const show=()=>{
         setdisplay("Here are some probable words for you..."); 
-        setvisi(0);
+        setvisi(1);
         if(control){
             clearTimeout(control);
-            console.log(control)
             setControl(null);
         }
         
@@ -47,7 +59,6 @@ export default function WordProbability(props) {
         .then(response => response.json())
         
         .then(json =>{ 
-        console.log(json)
         setfetcheddata(json)})
         .catch(err=>console.log(err))
      }
@@ -57,12 +68,12 @@ return (
     <div>
         <div className="mb-3" style={{color:'white'}}>
             <h1><label htmlFor="exampleFormControlTextarea1" className="form-label font">{props.head}</label></h1>
-            <textarea className="form-control opacity-50" id="exampleFormControlTextarea1" value={text} onChange={changedvalue}  style={{backgroundColor:'#443c52',color:'white'}} rows="8"></textarea>
+            <textarea className="form-control opacity-50" id="exampleFormControlTextarea1" value={text} onChange={changedvalue} onKeyDown={handleKey} style={{backgroundColor:'#443c52',color:'white'}} rows="8"></textarea>
             <button type="button" className="btn btn-light my-3" disabled={text.trim().length===0?true:false} onClick={show}>Check Next Word Probability</button>
-           <h1 className='font'>Probable Words Preview:</h1> 
-           <p className='font'style={{ fontSize: '20px' }}>{display}</p>
-
-            <table className="table table-hover table-striped table-bordered border-primary" style={{width:'40%',visibility:visi?'hidden':'visible'}}>
+            <h1 className='font'>Probable Words Preview:</h1> 
+            <p className='font'style={{ fontSize: '20px' }}>{display}</p>
+            {visi?
+            <table className="table table-hover table-striped table-bordered border-primary" style={{width:'40%'}}>
             <thead>
                 <tr className='table-dark table-bordered border-dark-subtle'>
                 <th scope="col">SN</th>
@@ -82,7 +93,9 @@ return (
         
     })}
             </tbody>
-            </table>
+            </table>:<></>}
+
+           
         </div>
     </div>
     

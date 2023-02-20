@@ -16,8 +16,6 @@ const twod=()=>{
   fetch(url1)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
-    console.log(data['2d'].length);
     for (var i = 0; i < data['2d'].length; i++) {
       dataPoints.push({
         label: data['2d'][i].vocab,
@@ -26,7 +24,6 @@ const twod=()=>{
         z: null
       });
     }
-    console.log(dataPoints);
     setfetched1(dataPoints);
   })
   .catch(err=>console.log(err));
@@ -38,8 +35,6 @@ const threed=()=>{
   fetch(url2)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
-    console.log(data['3d'].length);
     for (var i = 0; i < data['3d'].length; i++) {
       dataPoints.push({
         label: data['3d'][i].vocab,
@@ -50,11 +45,11 @@ const threed=()=>{
         indexLabelPlacement: "outside" 
       });
     }
-    console.log(dataPoints)
     setfetched2(dataPoints);
   })
   .catch(err=>console.log(err));
 }
+
   const options1 = {
     animationEnabled: true,
     exportEnabled: true,
@@ -145,8 +140,7 @@ const threed=()=>{
       dataPoints: fetched2
     }]
   }
-  console.log(fetched1)
-  console.log(fetched2)
+
   return (
     <>
     <div className="d-flex justify-content-between">

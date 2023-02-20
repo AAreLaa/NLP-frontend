@@ -11,7 +11,6 @@ export default function Form(props) {
   let apiUrl =`https://api.mymemory.translated.net/get?q=${text}!&langpair=en-GB|ne-NP`
   const translate=()=>{
     fetch(apiUrl).then(res=>res.json().then(data=>{
-      console.log(data);
       setdisplay(data.responseData.translatedText);
     }))
   }
