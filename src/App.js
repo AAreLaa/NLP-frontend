@@ -7,7 +7,6 @@ import Home from './components/Home';
 import WordProbability from './components/WordProbability';
 import KnowTheSentiment from './components/KnowTheSentiment';
 import WordEmbeddings from './components/WordEmbeddings';
-import background from './images/bkg.gif';
 import {
   BrowserRouter as Router,
   Routes,
@@ -22,7 +21,7 @@ function App() {
       if(mode==='light')
       {
         document.body.style.backgroundColor = 'Black'
-        document.body.style.backgroundImage= `url(${background})`
+        document.body.style.backgroundImage= `None`
         setMode('dark')
         console.log(mode)
       }

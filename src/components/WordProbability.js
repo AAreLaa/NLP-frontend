@@ -76,7 +76,7 @@ return (
         <div className="mb-3" style={{color:'white'}}>
         <div className="px-5 pt-3 pb-3" style={{boxShadow: '#5a6269  0px 2px 8px',borderRadius: '0.75rem'}}>
             <h1><label htmlFor="exampleFormControlTextarea1" className="form-label font">{props.head}</label></h1>
-            <textarea className="form-control opacity-50" autoFocus id="exampleFormControlTextarea1" value={text} onChange={changedvalue} onKeyUp={handleKey} style={{backgroundColor:'#443c52',color:'white'}} rows="8"></textarea>
+            <textarea className="form-control opacity-50" autoFocus id="exampleFormControlTextarea1" value={text} onChange={changedvalue} onKeyUp={handleKey} style={{backgroundColor:'black',color:'white'}} rows="8"></textarea>
             <button type="button" className="button-4 my-3" disabled={text.trim().length===0?true:false} style={{ cursor:text.trim().length===0?'not-allowed':'pointer' }} onClick={show}>Check Next Word Probability</button>
             <h1 className='font'>Probable Words Preview:</h1> 
             <p className='font'style={{ fontSize: '20px' }}>{display}</p>
