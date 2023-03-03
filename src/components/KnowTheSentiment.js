@@ -93,7 +93,7 @@ return (
           <div style={{color:'white'}}>
               <h1><label htmlFor="exampleFormControlTextarea1" className="form-label font">{props.head}</label></h1>
               <textarea className="form-control opacity-50" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedvalue}  style={{backgroundColor:'#443c52',color:'white'}} rows="8"></textarea>
-              <button type="button" className="button-4 my-3" disabled={text.trim().length===0?true:false} onClick={show}>Know the Sentiment</button>
+              <button type="button" className="button-4 my-3" disabled={text.trim().length===0?true:false} style={{ cursor:text.trim().length===0?'not-allowed':'pointer' }} onClick={show}>Know the Sentiment</button>
             <h1 className='font'>Sentiment:</h1> 
             <p className='font'style={{ fontSize: '20px' }}>{display}</p>
             <img src={gif} alt="sentiment" />
@@ -105,7 +105,7 @@ return (
         <div className="px-5 pt-3 pb-3" style={{boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 8px',borderRadius: '0.75rem'}}>
             <h1><label htmlFor="exampleFormControlTextarea1" className="form-label font">{props.head}</label></h1>
             <textarea className="form-control" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedvalue} rows="8"></textarea>
-            <button type="button" className="button-4 my-3" disabled={text.trim().length===0?true:false} onClick={show}>Know the Sentiment</button>
+            <button type="button" className="button-4 my-3" disabled={text.trim().length===0?true:false} style={{ cursor:text.trim().length===0?'not-allowed':'pointer' }} onClick={show}>Know the Sentiment</button>
            <h1 className='font'>Sentiment:</h1> 
            <p className='font' style={{ fontSize: '20px' }}>{display}</p>
            <img src={gif} alt="sentiment" />
