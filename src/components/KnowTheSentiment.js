@@ -1,14 +1,9 @@
 import React,{useState} from 'react'
-import sad from '../images/sad.gif'
-import happy from '../images/happy.gif'
-import neutral from '../images/neutral.gif'
-import sentiment from '../images/sentiment.gif'
+import { BsArrowRightSquare} from 'react-icons/bs'
+
 export default function KnowTheSentiment(props) {
-
-    const [gif,setgif] = useState(sentiment);
     const [control,setControl]=useState(null);
-
-    const [fetched,setfetched] = useState("");
+    const [fetched,setfetched] = useState(null);
 
     const [text,settext] = useState("");
     const [display,setdisplay] = useState("Enter something to show the sentiment of the text...");
@@ -32,17 +27,14 @@ export default function KnowTheSentiment(props) {
   
     const show=()=>{
       
-      if (fetched==='Neutral'){
-        setdisplay("Neutral");
-        setgif(neutral);
+      if (fetched['type']==='Neutral'){
+        setdisplay("Type: Neutral");
       } 
-      else if(fetched==='Positive'){
-        setdisplay("Positive");
-        setgif(happy);
+      else if(fetched['type']==='Positive'){
+        setdisplay("Type: Positive");
       }
-      else if(fetched==='Negative'){
-        setdisplay("Negative");
-        setgif(sad);
+      else if(fetched['type']==='Negative'){
+        setdisplay("Type: Negative");
       }
       if(control){
         clearTimeout(control);
@@ -51,11 +43,8 @@ export default function KnowTheSentiment(props) {
 
         let x=setTimeout(() => {
           setdisplay("Why don't you try some other text too..."); 
-          setgif(sentiment);
         }, 20000);
         setControl(x);
-
-    
     postreq();
   }
     const postreq=()=>{
@@ -77,9 +66,7 @@ export default function KnowTheSentiment(props) {
         .then(response => response.json())
         
         .then(json =>{ 
-          for(let i in json){
-            setfetched(json[i]);
-          }
+          setfetched(json)
         })
         .catch(err=>console.log(err));
      }
@@ -92,11 +79,20 @@ return (
         <div className="px-5 pt-3 pb-3" style={{boxShadow: '#5a6269  0px 2px 8px',borderRadius: '0.75rem'}}>
           <div style={{color:'white'}}>
               <h1><label htmlFor="exampleFormControlTextarea1" className="form-label font">{props.head}</label></h1>
-              <textarea className="form-control opacity-50" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedvalue}  style={{backgroundColor:'#443c52',color:'white'}} rows="8"></textarea>
-              <button type="button" className="button-4 my-3" disabled={text.trim().length===0?true:false} onClick={show}>Know the Sentiment</button>
+              <textarea className="form-control opacity-50" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedvalue}  style={{backgroundColor:'black',color:'white'}} rows="8"></textarea>
+              <button type="button" className="button-4 my-3" disabled={text.trim().length===0?true:false} style={{ cursor:text.trim().length===0?'not-allowed':'pointer' }} onClick={show}>Know the Sentiment</button>
             <h1 className='font'>Sentiment:</h1> 
             <p className='font'style={{ fontSize: '20px' }}>{display}</p>
-            <img src={gif} alt="sentiment" />
+            {fetched===null?<></>:<div>
+            {fetched['probabilities'].map((element,i)=>{
+            return(
+            <div key={i}>
+                <div className="progress my-2" style={{height: '4px',width:'80%'}} >
+                  <div className="progress-bar bg-info" role="progressbar" style={{width: `${element*100}%`}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div style={{color:'white',float:'right' }}><BsArrowRightSquare/><span className='mx-2'>{element}</span></div>
+                <div style={{color:'white'}}>{`${i===0?'Negative':i===1?'Positive':'Neutral'}`}</div>
+            </div>)})}</div>}
           </div>
         </div>
 
@@ -105,10 +101,19 @@ return (
         <div className="px-5 pt-3 pb-3" style={{boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 8px',borderRadius: '0.75rem'}}>
             <h1><label htmlFor="exampleFormControlTextarea1" className="form-label font">{props.head}</label></h1>
             <textarea className="form-control" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedvalue} rows="8"></textarea>
-            <button type="button" className="button-4 my-3" disabled={text.trim().length===0?true:false} onClick={show}>Know the Sentiment</button>
+            <button type="button" className="button-4 my-3" disabled={text.trim().length===0?true:false} style={{ cursor:text.trim().length===0?'not-allowed':'pointer' }} onClick={show}>Know the Sentiment</button>
            <h1 className='font'>Sentiment:</h1> 
            <p className='font' style={{ fontSize: '20px' }}>{display}</p>
-           <img src={gif} alt="sentiment" />
+           {fetched===null?<></>:<div>
+            {fetched['probabilities'].map((element,i)=>{
+            return(
+            <div key={i}>
+                <div className="progress my-2" style={{height: '4px',width:'80%'}} >
+                  <div className="progress-bar bg-info" role="progressbar" style={{width: `${element*100}%`}} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div style={{color:'black',float:'right' }}><BsArrowRightSquare/><span className='mx-2'>{element}</span></div>
+                <div>{`${i===0?'Negative':i===1?'Positive':'Neutral'}`}</div>
+            </div>)})}</div>}
         </div>
 }
     </div>
