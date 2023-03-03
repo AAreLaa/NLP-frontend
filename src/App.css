@@ -46,8 +46,29 @@ body{
   border-radius: 0.75rem;
 }
 
+
 .dark:hover {
   background-color: #3d3b3b;
+  color: #61dafb;
+  text-decoration: none;
+  transition-duration: 0.1s;
+  border-radius: 0.75rem;
+}
+
+.navbar-nav .nav-link.inactive, .navbar-nav .show>.nav-link {
+  color: rgb(49 43 43 / 90%);
+}
+
+.light-active{
+  background-color: #ebe8e8;
+  color: #05bcee;
+  text-decoration: underline;
+  transition-duration: 0.1s;
+  border-radius: 0.75rem;
+}
+
+.dark-active {
+  background-color: #414040;
   color: #61dafb;
   text-decoration: none;
   transition-duration: 0.1s;
