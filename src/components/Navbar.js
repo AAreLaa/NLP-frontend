@@ -15,9 +15,9 @@ export default function Navbar(props) {
             <li className="nav-item">
             <Link className="nav-link active" aria-current="page" to="/">{props.title1}</Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
             <Link className="nav-link" to="/ToNepali" >{props.title2}</Link>
-            </li>
+            </li> */}
             <li className="nav-item">
             <Link className="nav-link" to="/ProbableWords" >{props.title3}</Link>
             </li>
