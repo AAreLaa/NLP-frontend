@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CanvasJSReact from './canvasjs/canvasjs.react';
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-export default function WordEmbeddings() {
+export default function WordEmbeddings(props) {
   let dataPoints=[];
 
   const[mode,setmode]=useState("");
@@ -145,10 +145,10 @@ const threed=()=>{
     <>
     <div className="d-flex justify-content-between">
       <div className="">
-      <button onClick={twod} type="button" className="btn btn-outline-light">Get 2D Word Embeddings</button>
+      <button onClick={twod} type="button" className={`btn btn-outline-${props.mode==='light'?'dark':'light'}`}>Get 2D Word Embeddings</button>
       </div>
       <div className="">
-      <button onClick={threed} type="button" className="btn btn-outline-light">Get 3D Word Embeddings</button>
+      <button onClick={threed} type="button" className={`btn btn-outline-${props.mode==='light'?'dark':'light'}`}>Get 3D Word Embeddings</button>
       </div>
       
     </div>
