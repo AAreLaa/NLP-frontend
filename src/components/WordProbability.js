@@ -59,7 +59,6 @@ export default function WordProbability(props) {
         .then(response => response.json())
         
         .then(json =>{ 
-            console.log(json)
         setfetcheddata(json);
         setvisi(1);
     })

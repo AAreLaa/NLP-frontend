@@ -8,7 +8,6 @@ export default function Home(props) {
   return (
     <>
     {props.mode==="light"?<LightHome/>:<DarkHome/>}
-    l
     </>
     
   )
