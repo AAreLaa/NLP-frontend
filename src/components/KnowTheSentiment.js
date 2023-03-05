@@ -22,19 +22,18 @@ export default function KnowTheSentiment(props) {
           }))
         .catch(err => console.log(err));
     }
-    }
-  
-    const show=()=>{
-      if(fetched!==null){
-        if (fetched['type']==='Neutral'){
-          setDisplay("Type: Neutral");
-        } 
-        else if(fetched['type']==='Positive'){
-          setDisplay("Type: Positive");
-        }
-        else if(fetched['type']==='Negative'){
-          setDisplay("Type: Negative");
-        }
+  }
+
+  const show = () => {
+    if (fetched !== null) {
+      if (fetched['type'] === 'Neutral') {
+        setDisplay("Type: Neutral");
+      }
+      else if (fetched['type'] === 'Positive') {
+        setDisplay("Type: Positive");
+      }
+      else if (fetched['type'] === 'Negative') {
+        setDisplay("Type: Negative");
       }
     }
     if (control) {
@@ -47,7 +46,6 @@ export default function KnowTheSentiment(props) {
     }, 20000);
     setControl(x);
     postreq();
-
   }
   const postreq = () => {
     let url = "/api/sentiment-analysis/";
@@ -69,7 +67,6 @@ export default function KnowTheSentiment(props) {
 
       .then(json => {
         setFetched(json)
-        console.log("json: ", json);
       })
       .catch(err => console.log(err));
   }
@@ -93,7 +90,7 @@ export default function KnowTheSentiment(props) {
                       <div className="progress my-2" style={{ height: '4px', width: '80%' }} >
                         <div className="progress-bar bg-info" role="progressbar" style={{ width: `${element * 100}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <div style={{ color: 'white', float: 'right' }}><BsArrowRightSquare /><span className='mx-2'>{element.toFixed(3)}</span></div>
+                      <div style={{ color: 'white', float: 'right' }}><BsArrowRightSquare /><span className='mx-2'>{element}</span></div>
                       <div style={{ color: 'white' }}>{`${i === 0 ? 'Negative' : i === 1 ? 'Positive' : 'Neutral'}`}</div>
                     </div>)
                 })}</div>}
@@ -115,7 +112,7 @@ export default function KnowTheSentiment(props) {
                     <div className="progress my-2" style={{ height: '4px', width: '80%' }} >
                       <div className="progress-bar bg-info" role="progressbar" style={{ width: `${element * 100}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div style={{ color: 'black', float: 'right' }}><BsArrowRightSquare /><span className='mx-2'>{element.toFixed(3)}</span></div>
+                    <div style={{ color: 'black', float: 'right' }}><BsArrowRightSquare /><span className='mx-2'>{element}</span></div>
                     <div>{`${i === 0 ? 'Negative' : i === 1 ? 'Positive' : 'Neutral'}`}</div>
                   </div>)
               })}</div>}
