@@ -3,12 +3,12 @@ import { BsArrowRightSquare } from 'react-icons/bs'
 
 export default function KnowTheSentiment(props) {
   const [control, setControl] = useState(null);
-  const [fetched, setfetched] = useState(null);
+  const [fetched, setFetched] = useState(null);
 
-  const [text, settext] = useState("");
-  const [display, setdisplay] = useState("Enter something to show the sentiment of the text...");
-  const changedvalue = (event) => {
-    settext(event.target.value);
+  const [text, setText] = useState("");
+  const [display, setDisplay] = useState("Enter something to show the sentiment of the text...");
+  const changedValue = (event) => {
+    setText(event.target.value);
   }
 
   const handleKey = (e) => {
@@ -18,23 +18,22 @@ export default function KnowTheSentiment(props) {
       fetch(url)
         .then(res => res.json()
           .then(data => {
-            settext(data[1][0][1][0] + " ");
+            setText(data[1][0][1][0] + " ");
           }))
         .catch(err => console.log(err));
     }
   }
 
   const show = () => {
-    console.log("fetched : ", fetched);
     if (fetched !== null) {
       if (fetched['type'] === 'Neutral') {
-        setdisplay("Type: Neutral");
+        setDisplay("Type: Neutral");
       }
       else if (fetched['type'] === 'Positive') {
-        setdisplay("Type: Positive");
+        setDisplay("Type: Positive");
       }
       else if (fetched['type'] === 'Negative') {
-        setdisplay("Type: Negative");
+        setDisplay("Type: Negative");
       }
     }
     if (control) {
@@ -43,11 +42,10 @@ export default function KnowTheSentiment(props) {
     }
 
     let x = setTimeout(() => {
-      setdisplay("Why don't you try some other text too...");
+      setDisplay("Why don't you try some other text too...");
     }, 20000);
     setControl(x);
     postreq();
-
   }
   const postreq = () => {
     let url = "/api/sentiment-analysis/";
@@ -68,21 +66,20 @@ export default function KnowTheSentiment(props) {
       .then(response => response.json())
 
       .then(json => {
-        setfetched(json)
-        console.log("json: ", json);
+        setFetched(json)
       })
       .catch(err => console.log(err));
   }
 
   return (
 
-    <div>
+    <div className="container my-3">
       {
         props.mode === 'dark' ?
           <div className="px-5 pt-3 pb-3" style={{ boxShadow: '#5a6269  0px 2px 8px', borderRadius: '0.75rem' }}>
             <div style={{ color: 'white' }}>
               <h1><label htmlFor="exampleFormControlTextarea1" className="form-label font">{props.head}</label></h1>
-              <textarea className="form-control opacity-50" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedvalue} style={{ backgroundColor: 'black', color: 'white' }} rows="8"></textarea>
+              <textarea className="form-control opacity-50" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedValue} style={{ backgroundColor: 'black', color: 'white' }} rows="8"></textarea>
               <button type="button" className="button-4 my-3" disabled={text.trim().length === 0 ? true : false} style={{ cursor: text.trim().length === 0 ? 'not-allowed' : 'pointer' }} onClick={show}>Know the Sentiment</button>
               <h1 className='font'>Sentiment:</h1>
               <p className='font' style={{ fontSize: '20px' }}>{display}</p>
@@ -104,7 +101,7 @@ export default function KnowTheSentiment(props) {
 
           <div className="px-5 pt-3 pb-3" style={{ boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 8px', borderRadius: '0.75rem' }}>
             <h1><label htmlFor="exampleFormControlTextarea1" className="form-label font">{props.head}</label></h1>
-            <textarea className="form-control" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedvalue} rows="8"></textarea>
+            <textarea className="form-control" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedValue} rows="8"></textarea>
             <button type="button" className="button-4 my-3" disabled={text.trim().length === 0 ? true : false} style={{ cursor: text.trim().length === 0 ? 'not-allowed' : 'pointer' }} onClick={show}>Know the Sentiment</button>
             <h1 className='font'>Sentiment:</h1>
             <p className='font' style={{ fontSize: '20px' }}>{display}</p>

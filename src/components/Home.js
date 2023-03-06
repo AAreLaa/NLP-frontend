@@ -7,9 +7,8 @@ export default function Home(props) {
 
   return (
     <>
-    {props.mode==="light"?<LightHome/>:<DarkHome/>}
-    l
+      {props.mode === "light" ? <LightHome /> : <DarkHome />}
     </>
-    
+
   )
 }
