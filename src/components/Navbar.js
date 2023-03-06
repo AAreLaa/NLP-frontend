@@ -4,7 +4,7 @@ export default function Navbar(props) {
 
     const [active, setActive] = useState('click1');
 
-   
+
 
     return (
         <div>

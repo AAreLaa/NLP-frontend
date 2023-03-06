@@ -34,15 +34,15 @@ function App() {
     <>
       <Router>
         <Navbar toggle={toggle} mode={mode} title="NLP-Web" title1="Home" title2="Transformers" title3="Probable Words" title4="Sentiment Analysis" title5="Word Embeddings" />
-        
-          <Routes>
-            <Route path="/" element={<Home mode={mode} />} />
-            <Route path="/Transformers" element={<Transformers mode={mode} head='Text Generation Using Transformer' />} />
-            <Route path="/ProbableWords" element={<WordProbability mode={mode} head='Enter the text to see the next probable words' />} />
-            <Route path="/KnowTheSentiment" element={<KnowTheSentiment mode={mode} head='Enter the text to see its Sentiment' />} />
-            <Route path="/WordEmbeddings" element={<WordEmbeddings mode={mode} head='Enter the text to see its Sentiment' />} />
-          </Routes>
-        
+
+        <Routes>
+          <Route path="/" element={<Home mode={mode} />} />
+          <Route path="/Transformers" element={<Transformers mode={mode} head='Text Generation Using Transformer Model' />} />
+          <Route path="/ProbableWords" element={<WordProbability mode={mode} head='Next Probable Words Using N-Gram Model' />} />
+          <Route path="/KnowTheSentiment" element={<KnowTheSentiment mode={mode} head='Sentiment Analysis Using V2 Model' />} />
+          <Route path="/WordEmbeddings" element={<WordEmbeddings mode={mode} head='Word Embeddings Using Word2Vec Model' />} />
+        </Routes>
+
       </Router>
 
     </>

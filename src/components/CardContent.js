@@ -1,6 +1,6 @@
-import {  MdSentimentVerySatisfied, MdOutlineGeneratingTokens } from 'react-icons/md'
+import { MdSentimentVerySatisfied, MdOutlineGeneratingTokens } from 'react-icons/md'
 import { AiFillQuestionCircle } from 'react-icons/ai'
-import { BsFileEarmarkWordFill,BsSpellcheck } from 'react-icons/bs'
+import { BsFileEarmarkWordFill, BsSpellcheck } from 'react-icons/bs'
 
 export let contents = [{
     icon: MdOutlineGeneratingTokens,

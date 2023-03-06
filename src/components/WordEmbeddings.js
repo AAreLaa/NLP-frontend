@@ -4,14 +4,14 @@ import Plot from 'react-plotly.js';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 export default function WordEmbeddings(props) {
   let dataPoints = [];
-  let a=[],b =[],c=[],lab=[];
+  let a = [], b = [], c = [], lab = [];
   const [mode, setmode] = useState("");
 
   const [fetched1, setfetched1] = useState([]);
   const [x, setX] = useState([]);
   const [y, setY] = useState([]);
   const [z, setZ] = useState([]);
-  const [label,setLabel]=useState([]);
+  const [label, setLabel] = useState([]);
 
   const twod = () => {
     setmode('2d');
@@ -48,7 +48,7 @@ export default function WordEmbeddings(props) {
         setY(b);
         setZ(c);
         setLabel(lab);
-       
+
         console.log(data)
       })
       .catch(err => console.log(err));
@@ -103,10 +103,10 @@ export default function WordEmbeddings(props) {
   return (
     <div className="container my-3">
       <div className="d-flex justify-content-between">
-        <div className="">
+        <div >
           <button onClick={twod} type="button" className={`btn btn-outline-${props.mode === 'light' ? 'dark' : 'light'}`}>Get 2D Word Embeddings</button>
         </div>
-        <div className="">
+        <div >
           <button onClick={threed} type="button" className={`btn btn-outline-${props.mode === 'light' ? 'dark' : 'light'}`}>Get 3D Word Embeddings</button>
         </div>
 
@@ -119,33 +119,34 @@ export default function WordEmbeddings(props) {
           </div> : mode === '3d' ?
             <div>
               <Plot data={[
-        {
-          x: x,
-          y: y,
-          z: z,
-          mode:'+markers+text',
-          type:'scatter3d',
-          marker: {
-            size:5,
-            color:'blue',     
-            colorscale:'Viridis', 
-            opacity:0.8
-          },
-          text: label,
-          textposition: 'top center',
-          textfont: {
-            family:  'Raleway, sans-serif'
-          }
-        }
-      ]}
-      layout={{width: 1200, height: 1000,  title: {
-        text:'<b>3D Word Embeddings</b>',
-        font: {
-          family: 'my-font',
-          size: 24,
-        },
-        
-    }}}/>
+                {
+                  x: x,
+                  y: y,
+                  z: z,
+                  mode: '+markers+text',
+                  type: 'scatter3d',
+                  marker: {
+                    size: 5,
+                    color: 'blue',
+                    colorscale: 'Viridis',
+                    opacity: 0.8
+                  },
+                  text: label,
+                  textposition: 'top center',
+                  textfont: {
+                    family: 'Raleway, sans-serif'
+                  }
+                }
+              ]}
+                layout={{
+                  width: 1200, height: 1000, title: {
+                    text: '<b>3D Word Embeddings</b>',
+                    font: {
+                      family: 'my-font',
+                      size: 24,
+                    },
+                  }
+                }} />
             </div> : <>
               <h1 className='animate' style={{ alignItems: 'centre' }}>Click the button to see respective graphs</h1>
               <div className="center">
