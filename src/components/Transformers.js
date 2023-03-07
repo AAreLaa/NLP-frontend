@@ -7,8 +7,7 @@ export default function Transformers(props) {
   const [number, setnumber] = useState('')
   const changedvalue = (event) => {
     settext(event.target.value);
-
-
+    
   }
 
   const handleKey = (e) => {
@@ -25,6 +24,10 @@ export default function Transformers(props) {
   }
 
   const show = () => {
+    if(number.trim().length === 0)
+    {
+      setnumber("3")
+    }
     let url = "/api/transformer-lm/";
 
     fetch(url, {
@@ -38,7 +41,7 @@ export default function Transformers(props) {
 
       body: JSON.stringify({
         body: text.trim(),
-        num_words: number
+        num_words: number.trim().length === 0 ? 3:number
       })
     })
 
@@ -65,10 +68,10 @@ export default function Transformers(props) {
               <h1><label htmlFor="exampleFormControlTextarea1" className="form-label font">{props.head}</label></h1>
               <textarea className="form-control opacity-50" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedvalue} style={{ backgroundColor: 'black', color: 'white' }} rows="8"></textarea>
               <div>
-                <span className="form-label font mt-4 mr-4" style={{ fontWeight: '500' }}>Enter number of words: </span>
+                <span className="form-label font mt-4 mr-4" style={{ fontWeight: '500' }}>Enter number of words (Default = 3): </span>
                 <input type='number' className="form-control opacity-50 mt-4" id="exampleFormControlTextarea1" value={number} onChange={(e) => { setnumber(e.target.value) }} style={{ backgroundColor: 'black', color: 'white', width: '10%', display: 'inline-block' }} rows="1"></input>
               </div>
-              <button type="button" className="button-4 my-3" disabled={(text.trim().length === 0 || number.trim().length === 0) ? true : false} style={{ cursor: text.trim().length === 0 || number.trim().length === 0 ? 'not-allowed' : 'pointer' }} onClick={show}>Generate Text</button>
+              <button type="button" className="button-4 my-3" disabled={(text.trim().length === 0 ) ? true : false} style={{ cursor: text.trim().length === 0 ? 'not-allowed' : 'pointer' }} onClick={show}>Generate Text</button>
 
               {fetcheddata === null ? <p className='font' style={{ fontSize: '20px' }}>{ }</p>
                 :
@@ -84,10 +87,10 @@ export default function Transformers(props) {
             <h1><label htmlFor="exampleFormControlTextarea1" className="form-label font">{props.head}</label></h1>
             <textarea className="form-control" autoFocus id="exampleFormControlTextarea1" value={text} onKeyDown={handleKey} onChange={changedvalue} rows="8"></textarea>
             <div>
-              <span className="form-label font mt-4 mr-4" style={{ fontWeight: '500' }}>Enter number of words: </span>
+              <span className="form-label font mt-4 mr-4" style={{ fontWeight: '500' }}>Enter number of words (Default = 3): </span>
               <input type='number' className="form-control mt-4" id="exampleFormControlTextarea1" value={number} onChange={(e) => { setnumber(e.target.value) }} style={{ borderColor: '#020202', width: '10%', display: 'inline-block' }} rows="1"></input>
             </div>
-            <button type="button" className="button-4 my-3" disabled={(text.trim().length === 0 || number.trim().length === 0) ? true : false} style={{ cursor: text.trim().length === 0 || number.trim().length === 0 ? 'not-allowed' : 'pointer' }} onClick={show}>Generate Text</button>
+            <button type="button" className="button-4 my-3" disabled={(text.trim().length === 0 ) ? true : false} style={{ cursor: text.trim().length === 0 ? 'not-allowed' : 'pointer' }} onClick={show}>Generate Text</button>
             {fetcheddata === null ? <p className='font' style={{ fontSize: '20px' }}>{ }</p>
               :
               <>
