@@ -25,17 +25,6 @@ export default function KnowTheSentiment(props) {
   }
 
   const show = () => {
-    if (fetched !== null) {
-      if (fetched['type'] === 'Neutral') {
-        setDisplay("Type: Neutral");
-      }
-      else if (fetched['type'] === 'Positive') {
-        setDisplay("Type: Positive");
-      }
-      else if (fetched['type'] === 'Negative') {
-        setDisplay("Type: Negative");
-      }
-    }
     if (control) {
       clearTimeout(control);
       setControl(null);
@@ -66,7 +55,8 @@ export default function KnowTheSentiment(props) {
       .then(response => response.json())
 
       .then(json => {
-        setFetched(json)
+        setFetched(json);
+        setDisplay("Type: "+json['type'])
       })
       .catch(err => console.log(err));
   }

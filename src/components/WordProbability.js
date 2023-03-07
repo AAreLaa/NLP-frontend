@@ -113,7 +113,7 @@ export default function WordProbability(props) {
                                     return (
                                         <div key={i}>
                                             <div className="progress my-2" style={{ height: '4px', width: '80%' }} >
-                                                <div className="progress-bar bg-info" role="progressbar" style={{ width: `${(element[1] * 1000000).toFixed(4)}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div className="progress-bar bg-info" role="progressbar" style={{ width: `${(element[1] * 10000).toFixed(4)}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                             <div style={{ color: 'white', float: 'right' }}><BsArrowRightSquare /><span className='mx-2'>{(element[1] * 100).toFixed(4)} %</span></div>
                                             <div style={{ color: 'white' }}>{element[0]}</div>
@@ -165,7 +165,7 @@ export default function WordProbability(props) {
                                         return (
                                             <div key={i}>
                                                 <div className="progress my-2" style={{ height: '4px', width: '80%' }} >
-                                                    <div className="progress-bar bg-info" role="progressbar" style={{ width: `${(element[1] * 1000000).toFixed(4)}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div className="progress-bar bg-info" role="progressbar" style={{ width: `${(element[1] * 10000).toFixed(4)}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                                 <div style={{ color: 'black', float: 'right' }}><BsArrowRightSquare /><span className='mx-2'>{(element[1] * 100).toFixed(4)} %</span></div>
                                                 <div >{element[0]}</div>
