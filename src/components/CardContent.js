@@ -5,27 +5,27 @@ import { BsFileEarmarkWordFill, BsSpellcheck } from 'react-icons/bs'
 export let contents = [{
     icon: MdOutlineGeneratingTokens,
     title: 'Text Generation Using Transformer Model',
-    text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae, illo!'
+    text: ' '
 },
 {
     icon: AiFillQuestionCircle,
     title: 'Next Probable Words Using N-Gram Model',
-    text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae, illo!'
+    text: ' '
 },
 {
     icon: MdSentimentVerySatisfied,
     title: 'Sentiment Analysis Using V2 Model',
-    text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae, illo!'
+    text: ' '
 },
 {
     icon: BsFileEarmarkWordFill,
     title: 'Word Embeddings Using Word2Vec Model',
-    text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae, illo!'
+    text: ' '
 },
 {
     icon: BsSpellcheck,
     title: 'Spelling Correction Using Transformer Model maybe',
-    text: 'Maybe'
+    text: ''
 },
 ]
 
