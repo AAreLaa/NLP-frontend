@@ -22,7 +22,6 @@ function App() {
       document.body.style.backgroundColor = 'Black'
       document.body.style.backgroundImage = `None`
       setMode('dark')
-      console.log(mode)
     }
     else {
       document.body.style.backgroundImage = 'None'
