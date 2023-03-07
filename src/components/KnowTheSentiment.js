@@ -77,11 +77,11 @@ export default function KnowTheSentiment(props) {
                 {fetched['probabilities'].map((element, i) => {
                   return (
                     <div key={i}>
-                      <div className="progress my-2" style={{ height: '4px', width: '80%' }} >
+                      <div className="progress my-2 mt-4" style={{ height: '4px', width: '80%' }} >
                         <div className="progress-bar bg-info" role="progressbar" style={{ width: `${element * 100}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <div style={{ color: 'white', float: 'right' }}><BsArrowRightSquare /><span className='mx-2'>{element.toFixed(3)}</span></div>
-                      <div style={{ color: 'white' }}>{`${i === 0 ? 'Negative' : i === 1 ? 'Positive' : 'Neutral'}`}</div>
+                      <div style={{ color: 'white',display:'inline-block',paddingRight:'1rem' }}>{`${i === 0 ? 'Negative' : i === 1 ? 'Positive' : 'Neutral'}`}</div>
+                      <div style={{ color: 'white', display:'inline-block'}}><BsArrowRightSquare /><span className='mx-2'>{element.toFixed(3)}</span></div>
                     </div>)
                 })}</div>}
             </div>
@@ -99,11 +99,11 @@ export default function KnowTheSentiment(props) {
               {fetched['probabilities'].map((element, i) => {
                 return (
                   <div key={i}>
-                    <div className="progress my-2" style={{ height: '4px', width: '80%' }} >
+                    <div className="progress my-2 mt-4" style={{ height: '4px', width: '80%' }} >
                       <div className="progress-bar bg-info" role="progressbar" style={{ width: `${element * 100}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div style={{ color: 'black', float: 'right' }}><BsArrowRightSquare /><span className='mx-2'>{element.toFixed(3)}</span></div>
-                    <div>{`${i === 0 ? 'Negative' : i === 1 ? 'Positive' : 'Neutral'}`}</div>
+                    <div style={{ color: 'black',display:'inline-block',paddingRight:'1rem' }}>{`${i === 0 ? 'Negative' : i === 1 ? 'Positive' : 'Neutral'}`}</div>
+                    <div style={{ color: 'black',display:'inline-block'}}><BsArrowRightSquare /><span className='mx-2'>{element.toFixed(3)}</span></div>
                   </div>)
               })}</div>}
           </div>

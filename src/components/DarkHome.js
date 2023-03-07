@@ -11,30 +11,36 @@ export default function DarkHome() {
     fontFamily: 'Arial',
     color: 'white'
   }
+  
   return (
     <>
       <div className="container my-3">
-        <div className="container" style={{ paddingBlock: "15rem", textAlign: 'center' }}>
+        <div className="container" style={{ paddingBlock: "17rem", textAlign: 'center' }}>
           <span style={heading}>Nepali Language Processing </span>
           <p style={{ fontFamily: 'cursive', fontSize: '20px', color: 'white' }} >Find everything in a single place  <FaBeer /></p>
         </div>
+      </div>
+      <div>
+        <div style={{  backgroundImage:'linear-gradient(to bottom, #0e0d1e 0%, rgb(35 33 75) 100%)', paddingBlock: '1rem' }}>
+          <div className="container my-5" style={{ textAlign: 'center' }}>
+            <span style={heading} >What We Offer  <MdLocalOffer /></span>
 
-        <div className="container my-5" style={{ textAlign: 'center' }}>
-          <span style={heading} >What We Offer  <MdLocalOffer /></span>
-        </div>
-        <div className="row my-3">
 
-          {contents.map((element) => {
-            return (
-              <div key={element.title} className="col-md-4 my-3">
-                <Card icon={element.icon} title={element.title} text={element.text}></Card>
-              </div>)
-          })}
+            <div className="row my-3">
+
+              {contents.map((element) => {
+                return (
+                  <div key={element.title} className="col-md-4 my-3">
+                    <Card icon={element.icon} title={element.title} text={element.text}></Card>
+                  </div>)
+              })}
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
-
     </>
 
   )
 }
+
