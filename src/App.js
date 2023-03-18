@@ -13,6 +13,7 @@ import {
   Route,
 } from "react-router-dom";
 import Transformers from './components/Transformers';
+import SpellChecker from './components/SpellChecker';
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar toggle={toggle} mode={mode} title="NLP-Web" title1="Home" title2="Transformers" title3="Probable Words" title4="Sentiment Analysis" title5="Word Embeddings" />
+        <Navbar toggle={toggle} mode={mode} title="NLP-Web" title1="Home" title2="Transformers" title3="Probable Words" title4="Sentiment Analysis" title5="Word Embeddings" title6="Spell Checker"/>
 
         <Routes>
           <Route path="/" element={<Home mode={mode} />} />
@@ -40,6 +41,7 @@ function App() {
           <Route path="/ProbableWords" element={<WordProbability mode={mode} head='Next Probable Words Using N-Gram Model' />} />
           <Route path="/KnowTheSentiment" element={<KnowTheSentiment mode={mode} head='Sentiment Analysis Using V2 Model' />} />
           <Route path="/WordEmbeddings" element={<WordEmbeddings mode={mode} head='Word Embeddings Using Word2Vec Model' />} />
+          <Route path="/SpellChecker" element={<SpellChecker mode={mode} head='Spelling Correction Using KN/Transformer Model' />} />
         </Routes>
 
       </Router>

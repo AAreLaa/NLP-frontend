@@ -24,7 +24,7 @@ export let contents = [{
 },
 {
     icon: BsSpellcheck,
-    title: 'Spelling Correction Using Transformer Model maybe',
+    title: 'Spelling Correction Using Transformer/KN Model',
     text: ''
 },
 ]

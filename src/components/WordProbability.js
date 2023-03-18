@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import wait from "../images/wait.gif"
 import { BsArrowRightSquare } from 'react-icons/bs'
 export default function WordProbability(props) {
 
@@ -7,10 +8,9 @@ export default function WordProbability(props) {
     const [visi, setvisi] = useState(0);
     const [text, settext] = useState("");
     const [display, setdisplay] = useState("Enter something to show you some probable words...");
+    const [loading, setLoading] = useState(false);
     const changedvalue = (event) => {
         settext(event.target.value);
-        console.log(event.target.value);
-        console.log(text)
     }
 
     const handleKey = (e) => {
@@ -42,9 +42,8 @@ export default function WordProbability(props) {
     }
 
     const postreq = () => {
-        console.log("post", text)
-
         let url = "/api/n-gram/";
+        setLoading(true);
         fetch(url, {
             method: "post",
             mode: 'cors',
@@ -65,6 +64,8 @@ export default function WordProbability(props) {
             .then(json => {
                 setfetcheddata(json);
                 setvisi(1);
+                setLoading(false);
+
             })
             .catch(err => console.log(err))
     }
@@ -83,6 +84,7 @@ export default function WordProbability(props) {
                             <button type="button" className="button-4 my-3" disabled={text.trim().length === 0 ? true : false} style={{ cursor: text.trim().length === 0 ? 'not-allowed' : 'pointer' }} onClick={show}>Check Next Word Probability</button>
                             <h1 className='font' style={{ color: 'white' }}>Probable Words Preview:</h1>
                             <p className='font' style={{ fontSize: '20px', color: 'white' }}>{display}</p>
+                            <div className='text-center'>{loading?<img src ={wait} width="20%" alt="loading" />:<></>}</div>
                             {/* {visi ?
                                 <div>
                                     <h4 className="font" style={{ color: 'white' }}>In Table:</h4>
@@ -107,7 +109,7 @@ export default function WordProbability(props) {
                                         </tbody>
                                     </table>
                                 </div> : <></>} */}
-                            {visi ? <div>
+                            {visi && !loading? <div>
                                 <h4 className="font" style={{ color: 'white' }}>Visualization:</h4>
                                 {fetcheddata['Predicted Tokens'].map((element, i) => {
                                     return (
@@ -115,8 +117,8 @@ export default function WordProbability(props) {
                                             <div className="progress my-2 mt-4" style={{ height: '4px', width: '80%' }} >
                                                 <div className="progress-bar bg-info" role="progressbar" style={{ width: `${(element[1] * 10000).toFixed(4)}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
-                                            <div style={{ color: 'white',display:'inline-block',paddingRight:'1rem'}}>{element[0]}</div>
-                                            <div style={{ color: 'white',display:'inline-block'}}><BsArrowRightSquare /><span className='mx-2'>{(element[1] * 100).toFixed(4)} %</span></div>
+                                            <div style={{ color: 'white', display: 'inline-block', paddingRight: '1rem' }}>{element[0]}</div>
+                                            <div style={{ color: 'white', display: 'inline-block' }}><BsArrowRightSquare /><span className='mx-2'>{(element[1] * 100).toFixed(4)} %</span></div>
                                         </div>)
                                 })}</div> : <></>}
                         </div>
@@ -135,6 +137,7 @@ export default function WordProbability(props) {
                             <div className="mt-2" >
                                 <h1 className='font'>Probable Words Preview:</h1>
                                 <p className='font' style={{ fontSize: '20px' }}>{display}</p>
+                                <div className='text-center'>{loading?<img src ={wait} width="20%" alt="loading" />:<></>}</div>
                                 {/* {visi ?
                                     <div>
                                         <h4 className="font">In Table:</h4>
@@ -159,16 +162,16 @@ export default function WordProbability(props) {
                                             </tbody>
                                         </table>
                                     </div> : <></>} */}
-                                {visi ? <div>
+                                {visi && !loading ? <div>
                                     <h4 className="font">Visualization:</h4>
                                     {fetcheddata['Predicted Tokens'].map((element, i) => {
                                         return (
                                             <div key={i}>
                                                 <div className="progress my-2 mt-4" style={{ height: '4px', width: '80%' }} >
-                                                    <div className="progress-bar bg-info" role="progressbar" style={{width: `${(element[1] * 10000).toFixed(4)}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div className="progress-bar bg-info" role="progressbar" style={{ width: `${(element[1] * 10000).toFixed(4)}%` }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
-                                                <div style={{ color: 'black',display:'inline-block',paddingRight:'1rem'}}>{element[0]}</div>
-                                                <div style={{ color: 'black',display:'inline-block'}}><BsArrowRightSquare /><span className='mx-2'>{(element[1] * 100).toFixed(4)} %</span></div>
+                                                <div style={{ color: 'black', display: 'inline-block', paddingRight: '1rem' }}>{element[0]}</div>
+                                                <div style={{ color: 'black', display: 'inline-block' }}><BsArrowRightSquare /><span className='mx-2'>{(element[1] * 100).toFixed(4)} %</span></div>
                                             </div>)
                                     })}</div> : <></>}
                             </div>
