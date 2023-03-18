@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import wait from "../images/wait.gif"
 export default function Transformers(props) {
   const [fetcheddata, setfetcheddata] = useState(null);
   const [text, settext] = useState("");
   const [generated, setGenerated] = useState("");
   const [input, setInput] = useState("");
-  const [number, setnumber] = useState('')
+  const [number, setnumber] = useState('');
+  const [loading, setLoading] = useState(false);
   const changedvalue = (event) => {
     settext(event.target.value);
     
@@ -29,6 +31,7 @@ export default function Transformers(props) {
       setnumber("3")
     }
     let url = "/api/transformer-lm/";
+    setLoading(true);
 
     fetch(url, {
       method: "post",
@@ -50,7 +53,8 @@ export default function Transformers(props) {
       .then(json => {
         setfetcheddata(json);
         setInput("Input String: " + json["Input String"]);
-        setGenerated("Generated String: " + json["Generated String"])
+        setGenerated("Generated String: " + json["Generated String"]);
+        setLoading(false);
 
       })
       .catch(err => console.log(err))
@@ -72,8 +76,8 @@ export default function Transformers(props) {
                 <input type='number' className="form-control opacity-50 mt-4" id="exampleFormControlTextarea1" value={number} onChange={(e) => { setnumber(e.target.value) }} style={{ backgroundColor: 'black', color: 'white', width: '10%', display: 'inline-block' }} rows="1"></input>
               </div>
               <button type="button" className="button-4 my-3" disabled={(text.trim().length === 0 ) ? true : false} style={{ cursor: text.trim().length === 0 ? 'not-allowed' : 'pointer' }} onClick={show}>Generate Text</button>
-
-              {fetcheddata === null ? <p className='font' style={{ fontSize: '20px' }}>{ }</p>
+              <div className='text-center'>{loading?<img src ={wait} width="20%" alt="loading" />:<></>}</div>
+              {fetcheddata === null || loading ? <p className='font' style={{ fontSize: '20px' }}></p>
                 :
                 <>
                   <p className='font' style={{ fontSize: '20px' }}>{input}</p>
@@ -91,7 +95,8 @@ export default function Transformers(props) {
               <input type='number' className="form-control mt-4" id="exampleFormControlTextarea1" value={number} onChange={(e) => { setnumber(e.target.value) }} style={{ borderColor: '#020202', width: '10%', display: 'inline-block' }} rows="1"></input>
             </div>
             <button type="button" className="button-4 my-3" disabled={(text.trim().length === 0 ) ? true : false} style={{ cursor: text.trim().length === 0 ? 'not-allowed' : 'pointer' }} onClick={show}>Generate Text</button>
-            {fetcheddata === null ? <p className='font' style={{ fontSize: '20px' }}>{ }</p>
+            <div className='text-center'>{loading?<img src ={wait} width="20%" alt="loading" />:<></>}</div>
+            {fetcheddata === null || loading ? <p className='font' style={{ fontSize: '20px' }}>{ }</p>
               :
               <>
                 <p className='font' style={{ fontSize: '20px' }}>{input}</p>

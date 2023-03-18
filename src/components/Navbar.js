@@ -31,6 +31,9 @@ export default function Navbar(props) {
                             <li className="nav-item mx-1">
                                 <Link onClick={() => setActive('click5')} className={`nav-link ${props.mode} active ${active === 'click5' ? props.mode + '-active' : ''}`} to="/WordEmbeddings" >{props.title5}</Link>
                             </li>
+                            <li className="nav-item mx-1">
+                                <Link onClick={() => setActive('click6')} className={`nav-link ${props.mode} active ${active === 'click6' ? props.mode + '-active' : ''}`} to="/SpellChecker" >{props.title6}</Link>
+                            </li>
                         </ul>
                         <div className="form-check form-switch">
                             <input className="form-check-input" type="checkbox" onClick={props.toggle} id="flexSwitchCheckDefault" />
