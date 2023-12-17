@@ -22,15 +22,15 @@ export default function Navbar(props) {
                             <li className="nav-item mx-1">
                                 <Link onClick={() => setActive('click2')} className={`nav-link ${props.mode} active ${active === 'click2' ? props.mode + '-active' : ''}`} to="/Transformers" >{props.title2}</Link>
                             </li>
-                            <li className="nav-item mx-1">
+                            {/* <li className="nav-item mx-1">
                                 <Link onClick={() => setActive('click3')} className={`nav-link ${props.mode} active ${active === 'click3' ? props.mode + '-active' : ''}`} to="/ProbableWords" >{props.title3}</Link>
-                            </li>
-                            <li className="nav-item mx-1">
+                            </li> */}
+                            {/* <li className="nav-item mx-1">
                                 <Link onClick={() => setActive('click4')} className={`nav-link ${props.mode} active ${active === 'click4' ? props.mode + '-active' : ''}`} to="/KnowTheSentiment" >{props.title4}</Link>
-                            </li>
-                            <li className="nav-item mx-1">
+                            </li> */}
+                            {/* <li className="nav-item mx-1">
                                 <Link onClick={() => setActive('click5')} className={`nav-link ${props.mode} active ${active === 'click5' ? props.mode + '-active' : ''}`} to="/WordEmbeddings" >{props.title5}</Link>
-                            </li>
+                            </li> */}
                             <li className="nav-item mx-1">
                                 <Link onClick={() => setActive('click6')} className={`nav-link ${props.mode} active ${active === 'click6' ? props.mode + '-active' : ''}`} to="/SpellChecker" >{props.title6}</Link>
                             </li>
